@@ -1,0 +1,58 @@
+/* Global values */
+:root{
+    --bg-color: rgb(162,144,122);
+    --bg: white;
+    --bd-color:#13293d;
+    --link: black;
+}
+
+/* setting up body  */
+body{
+    background-color: var(--bg-color);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;    
+    flex-direction: column;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+/* designing the header and the navigation menu */
+header{
+    padding: 0px 20px 0 20px ;
+    position:  relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+a{
+    text-decoration: none;
+    color: var(--link);
+}
+
+main{
+    position: relative;
+    height: 100%;
+    
+}
+
+section{
+    text-align: center;
+
+}
+
+section h1{
+    font-size: 2.5rem;
+}
+
+
+
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  
+    color: white;
+    text-align: center;
+}
