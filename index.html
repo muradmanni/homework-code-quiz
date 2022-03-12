@@ -16,7 +16,7 @@
                 <a href="">View HighScores</a>
             </nav>
             <!-- put timer on right top corner -->
-            <div>Time: <span>xx</span></div>
+            <div>Time left: <span id="timer-display"></span></div>
     </header>
   
     <main class="relative">
@@ -26,13 +26,18 @@
             <h1> Coding Quiz Challenge </h1>
             </div>
             <div>
-                <p class="" id="">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score and time by ten seconds!</p>
+                <p id="initial-message">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score and time by ten seconds!</p>
                 <!-- Options here -->
                 <ul>
                 
                 </ul>
             </div>
             <div><button id="start-quiz">Start Quiz</button></div>
+            
+            <div id="after-quiz-input" class="hide">Enter initials <input type="text" name="text-initials" /> <button id="button-submit">Submit</button></div>
+            <div id="after-quiz-button" class="hide">
+                <button id="button-back">Back</button> <button id="button-high-scores">HighScores</button>
+            </div>
         </section>
     </main>
 
@@ -40,6 +45,8 @@
     <footer>
     <h4 class="footer-end">Copyright © 2020 MuradAli, Professionals.</h4>
     </footer>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
