@@ -4,7 +4,7 @@ var initialMessage = document.querySelector("#initial-message");
 var afterQuizInput  = document.querySelector("#after-quiz-input")
 var initialSubmitButton =  document.querySelector("#button-submit")
 var afterQuizButtons  = document.querySelector("#after-quiz-button")
-var buttonBack = document.querySelector("#button-back");
+
 var quizOptions = document.querySelector("#quiz-options");
 var initials =  document.querySelector("#text-initials");
 var divCorrectWrong =  document.querySelector("#div-correct-wrong");
@@ -62,7 +62,7 @@ startQuizButton.addEventListener("click", startQuiz);
 initialSubmitButton.addEventListener("click", function(){
     if (initials.value!==""){
         afterQuizInput.setAttribute("style","display: none");
-        afterQuizButtons.setAttribute("style", "display: block");
+        //afterQuizButtons.setAttribute("style", "display: block");
         if (timecheck==="timeup")
         {
             initialMessage.textContent="";   
@@ -76,15 +76,13 @@ initialSubmitButton.addEventListener("click", function(){
         highScores.push([score,initials.value]);
         localStorage.setItem("highScores", JSON.stringify(highScores));
         divShowScore.setAttribute("style","display: none");
+        window.location.href = "highscore.html";
     }
     else{
         initials.setAttribute("placeholder","initials");
     }
 });
 
-buttonBack.addEventListener("click", function () {
-     window.location.href = window.location.href;
-    });
 
 function startQuiz(){
     // start Timer

@@ -57,6 +57,11 @@ ul{
     text-align:center;
 
 }
+
+.high-score-list{
+    text-align: left;
+}
+
 footer{
     position: fixed;
     left: 0;
