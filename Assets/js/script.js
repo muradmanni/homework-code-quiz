@@ -31,7 +31,7 @@ var questions = [{
     correctAnswer: "alerts"
 },
 {
-    question: "The condition in and if / else statement is enclosed witin ______.",
+    question: "The condition in an if / else statement is enclosed witin ______.",
     options: ["quotes","curly brackets","paranthesis","square brackets"],
     correctAnswer: "paranthesis"
 },
@@ -133,14 +133,14 @@ function startTimerOptionAlert(){
 
 function renderQuestion(){
     if (questionNo< questions.length){
-        initialMessage.textContent = questions[questionNo].question;
+        initialMessage.textContent = "Ques # " + (questionNo+1) +  ".   " +  questions[questionNo].question;
 
         for (var x=0; x<questions[questionNo].options.length; x++){
             var li = document.createElement("li");
             var button = document.createElement("button");
 
             button.textContent = questions[questionNo].options[x];
-            button.setAttribute("style","width: 100px");
+            button.setAttribute("style","width: 200px; height: 50px; margin-bottom: 10px");
             button.setAttribute("id","button-option");
             li.setAttribute("data-index",x);
             

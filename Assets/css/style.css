@@ -22,6 +22,7 @@ header{
     position:  relative;
     display: flex;
     justify-content: space-between;
+    
 }
 
 a{
@@ -56,10 +57,14 @@ ul{
     list-style: none;
     text-align:center;
 
+    
+    /* text-align: left;
+    padding-left: 30%; */
 }
 
-.high-score-list{
+#high-score-list{
     text-align: left;
+    padding-left: 30%;
 }
 
 footer{
