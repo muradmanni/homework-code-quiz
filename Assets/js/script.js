@@ -7,6 +7,13 @@ var afterQuizButtons  = document.querySelector("#after-quiz-button")
 var buttonBack = document.querySelector("#button-back");
 var quizOptions = document.querySelector("#quiz-options");
 var initials =  document.querySelector("#text-initials");
+var divCorrectWrong =  document.querySelector("#div-correct-wrong");
+var optionAlert =  document.querySelector("#option-alert");
+
+
+var divShowScore =  document.querySelector("#div-show-score");
+var showScore =  document.querySelector("#show-score");
+
 
 var timeInterval;
 var secondsLeft = 60;
@@ -14,6 +21,9 @@ var timecheck=""
 var score=0;
 var questionNo=0;
 var highScores = [];
+var displayAlert="";
+var correctAnswers=0;
+var wrongAnswers=0;
 
 var questions = [{
     question: "Commonly used data types DO NOT include:",
@@ -36,7 +46,7 @@ var questions = [{
     correctAnswer: "quotes"
 },
 {
-    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    question: "A very useful tool used during development and debugging for prng content to the debugger is:",
     options: ["JavaScript","terminal / bash","for loops","console.log"],
     correctAnswer: "console.log"
 }
@@ -65,6 +75,7 @@ initialSubmitButton.addEventListener("click", function(){
         }
         highScores.push([score,initials.value]);
         localStorage.setItem("highScores", JSON.stringify(highScores));
+        divShowScore.setAttribute("style","display: none");
     }
     else{
         initials.setAttribute("placeholder","initials");
@@ -100,7 +111,26 @@ function startTimer(){
         }
 
     },1000);
+}
 
+function startTimerOptionAlert(){
+    var displayTime=8;
+
+    var timerOptionAlert = setInterval(function (){
+        if (displayTime>0){
+            // show alert display
+            divCorrectWrong.setAttribute("style","display: block");
+            optionAlert.setAttribute("style","font-style: italic");
+            optionAlert.textContent = displayAlert;
+        }
+        else
+        {
+            // hide alert display
+            divCorrectWrong.setAttribute("style","display: none");
+            clearInterval(timerOptionAlert);
+        }
+        displayTime--;
+    },100);
 }
 
 function renderQuestion(){
@@ -135,18 +165,25 @@ quizOptions.addEventListener("click",function(event){
         var selectedAnswer= element.parentElement.textContent;
         if (selectedAnswer === questions[questionNo].correctAnswer)
         {
-            alert("correct");
+            displayAlert = "Correct";
+            score =score +10;
+            correctAnswers++;
         }
         else{
             secondsLeft =secondsLeft - 5;
+            displayAlert="Wrong";
+            score =score -6;
+            wrongAnswers++;
         }
 
         while(quizOptions.hasChildNodes())
         {
             quizOptions.removeChild(quizOptions.firstChild);
         }
+        startTimerOptionAlert();
         questionNo++
         renderQuestion();
+        
     }
 })
 
@@ -157,9 +194,13 @@ function stopQuiz(){
         initialMessage.textContent="Sorry Times-up ";
     }
     else{
+        initialMessage.textContent="";
         clearInterval(timeInterval);
     }
     quizOptions.setAttribute("style","display: none");
     afterQuizInput.setAttribute("style","display: block");
+    divShowScore.setAttribute("style","display: block");
+    
+    showScore.textContent = "Score: " + score + ", with " + correctAnswers + " correct answers and " + wrongAnswers + " wrong answers.";
 }
 
