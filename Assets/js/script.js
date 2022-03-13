@@ -9,7 +9,7 @@ var quizOptions = document.querySelector("#quiz-options");
 var initials =  document.querySelector("#text-initials");
 
 var timeInterval;
-var secondsLeft = 13;
+var secondsLeft = 60;
 var timecheck=""
 var score=0;
 var questionNo=0;
