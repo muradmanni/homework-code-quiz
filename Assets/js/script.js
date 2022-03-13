@@ -16,14 +16,29 @@ var questionNo=0;
 var highScores = [];
 
 var questions = [{
-    question: "What is my name?",
-    options: ["Murad","Ali","Noor","Ali"],
-    correctAnswer: "Murad"
+    question: "Commonly used data types DO NOT include:",
+    options: ["strings","booleans","alerts","numbers"],
+    correctAnswer: "alerts"
 },
 {
-    question: "What is your name?",
-    options: ["My","Name","Noor","Ali"],
-    correctAnswer: "Ali"
+    question: "The condition in and if / else statement is enclosed witin ______.",
+    options: ["quotes","curly brackets","paranthesis","square brackets"],
+    correctAnswer: "paranthesis"
+},
+{
+    question: "Arrays in JavaScript can be used to store ________.",
+    options: ["numbers and strings","other arrays","booleans","all of the above"],
+    correctAnswer: "all of the above"
+},
+{
+    question: "String values must be enclosed within ________ when being assigned to variables.",
+    options: ["commas","curly brackets","quotes","paranthesis"],
+    correctAnswer: "quotes"
+},
+{
+    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    options: ["JavaScript","terminal / bash","for loops","console.log"],
+    correctAnswer: "console.log"
 }
 ]
 
