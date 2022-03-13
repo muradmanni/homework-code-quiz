@@ -1,3 +1,4 @@
+// DECLARING VARIBALES
 var startQuizButton = document.querySelector("#start-quiz");
 var secondsDisplay = document.querySelector("#timer-display");
 var initialMessage = document.querySelector("#initial-message");
@@ -14,17 +15,17 @@ var optionAlert =  document.querySelector("#option-alert");
 var divShowScore =  document.querySelector("#div-show-score");
 var showScore =  document.querySelector("#show-score");
 
-
 var timeInterval;
-var secondsLeft = 60;
-var timecheck=""
-var score=0;
-var questionNo=0;
-var highScores = [];
-var displayAlert="";
-var correctAnswers=0;
-var wrongAnswers=0;
+var secondsLeft = 60;   //TIMER FOR THE QUIZ
+var timecheck=""        //THIS VARIBALE WILL CHECK IF QUIZ TIMER REACHED 0
+var score=0;            //VARIABLE TO KEEP SCORE
+var questionNo=0;       //VARIBALE TO KEEP TRACK OF QUESTION NO.
+var highScores = [];    //ARRAY VARIBALE TO STORE HIGHSCORE VALUES
+var displayAlert="";    //VARIBLE TO STORE IF A OPTION SELECTED IS CORRECT OR WRONG AND WILL DISPLAY FOR FEW SECONDS BEFORE GOING AWAY.
+var correctAnswers=0;   //KEEP COUNT OF CORRECT ANSWERS
+var wrongAnswers=0;     //KEEP COUNT OF INCORRECT ANSWERS
 
+// QUESTION ARRAY
 var questions = [{
     question: "Commonly used data types DO NOT include:",
     options: ["strings","booleans","alerts","numbers"],
@@ -52,13 +53,10 @@ var questions = [{
 }
 ]
 
-// var highScores={
-//     initial: "",
-//     score: 0
-// }
-
+// EVENT LISTENER ON QUIZSTART BUTTON ON CLICK EVENT.
 startQuizButton.addEventListener("click", startQuiz);
 
+//EVEN LISTENER WITH FUNCTION WHICH WILL STORE SCORE AND INITIAL TO LOCAL STORAGE
 initialSubmitButton.addEventListener("click", function(){
     if (initials.value!==""){
         afterQuizInput.setAttribute("style","display: none");
@@ -68,22 +66,24 @@ initialSubmitButton.addEventListener("click", function(){
             initialMessage.textContent="";   
         }
         
+        // GETTING VALUES FROM LOCALSTORAGE USING KEY
         var localHighScores = JSON.parse(localStorage.getItem("highScores"));
         
         if (localHighScores!==null){
-            highScores = localHighScores;
+            highScores = localHighScores;   //STORING VALUES TO LOCAL ARRAY VARIABLE
         }
         highScores.push([score,initials.value]);
         localStorage.setItem("highScores", JSON.stringify(highScores));
         divShowScore.setAttribute("style","display: none");
-        window.location.href = "highscore.html";
+        window.location.href = "highscore.html";    //CHANGING THE LOCATION OF WINDOW TO HIGHSCORE.HTML PAGE
     }
     else{
-        initials.setAttribute("placeholder","initials");
+        initials.setAttribute("placeholder","initials");    //IF NO INITIALS ARE ENTERED IT WILL SHOW PLACEHOLDER TO LET USER KNOW WHAT AND WHERE THEY HAVE TO ENTER VALUE
     }
 });
 
 
+// THIS FUNCTION IS CALLED WHEN START QUIZ BUTTON IS CLICKED
 function startQuiz(){
     // start Timer
     startTimer();
@@ -92,10 +92,12 @@ function startQuiz(){
     initialMessage.textContent="";
     startQuizButton.setAttribute("style","display: none");
 
+    // calling function
     renderQuestion();
 
 }
 
+// KEEP TRACK OF TIME DURING THE QUIZ
 function startTimer(){
         timeInterval = setInterval(function (){
 
@@ -111,6 +113,7 @@ function startTimer(){
     },1000);
 }
 
+// THIS TIMER IS FOR DISPLAY ALERT AFTER AN OPTION IS SELECTED, TO DISPLAY CORRECT OR WRONG
 function startTimerOptionAlert(){
     var displayTime=8;
 
@@ -131,6 +134,7 @@ function startTimerOptionAlert(){
     },100);
 }
 
+// FUNCTION TO RENDER NEW QUESTIONS AND IF ALL QUESTIONS ARE FINISHED THEN IT WILL CALL STOPQUIZ FUNCTION
 function renderQuestion(){
     if (questionNo< questions.length){
         initialMessage.textContent = "Ques # " + (questionNo+1) +  ".   " +  questions[questionNo].question;
@@ -155,6 +159,7 @@ function renderQuestion(){
     }    
 }
 
+// EVENT LISTENER, ON CLICK OF ANY OPTION SELECTED
 quizOptions.addEventListener("click",function(event){
     var element = event.target;
 
@@ -165,7 +170,7 @@ quizOptions.addEventListener("click",function(event){
         {
             displayAlert = "Correct";
             score =score +10;
-            correctAnswers++;
+            correctAnswers++;   
         }
         else{
             secondsLeft =secondsLeft - 5;
@@ -174,18 +179,19 @@ quizOptions.addEventListener("click",function(event){
             wrongAnswers++;
         }
 
+        // REMOVING ALL OLD LIST ITEMS
         while(quizOptions.hasChildNodes())
         {
             quizOptions.removeChild(quizOptions.firstChild);
         }
-        startTimerOptionAlert();
+        startTimerOptionAlert();    
         questionNo++
         renderQuestion();
         
     }
 })
 
-
+// WHEN TIMER REACHES 0 OR BELOW OR ALL QUESTIONS ARE FINISHED THIS FUNCTION WILL PERFORM ITS FUCNTIONALITY
 function stopQuiz(){
     if (timecheck==="timeup")
     {
@@ -199,6 +205,10 @@ function stopQuiz(){
     afterQuizInput.setAttribute("style","display: block");
     divShowScore.setAttribute("style","display: block");
     
-    showScore.textContent = "Score: " + score + ", with " + correctAnswers + " correct answers and " + wrongAnswers + " wrong answers.";
-}
+    showScore.textContent = "Score: " + score + ", with " + correctAnswers + " correct answers and " + wrongAnswers + " wrong answers";
+    if (questionNo!==questions.length)
+    {
+        showScore.textContent += " and " + (questions.length - questionNo) + " unanswered";
+    }
+}   
 
