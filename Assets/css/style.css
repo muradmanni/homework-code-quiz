@@ -48,7 +48,11 @@ section h1{
     display: none;
 }
 
+ul{
+    list-style: none;
+    text-align:center;
 
+}
 footer{
     position: fixed;
     left: 0;
