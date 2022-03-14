@@ -6,7 +6,7 @@ Fourth assignment of Bootcamp
 
 This is the FOURTH assignment for the Bootcamp. CODE QUIZ is a great tool of taking online quizes. The question array can be changed according to the need.
 
-The timer is set to 60 seconds and with every wrong answer 5 seconds will be deducted from total time.
+The timer is set to 60 seconds and with every wrong answer 5 seconds will be deducted from total time. Score will also be tracked as you go through the quiz, each correct answer will give 10 score and each wrong answer will take away 4 score.
 
 Once all the questions are completed or the timer is reached 0, the quiz will finish and it will ask for initials. After giving initials it will show all the scores in different html file.
 
