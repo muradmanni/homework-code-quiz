@@ -11,9 +11,10 @@ var initials =  document.querySelector("#text-initials");
 var divCorrectWrong =  document.querySelector("#div-correct-wrong");
 var optionAlert =  document.querySelector("#option-alert");
 
-
 var divShowScore =  document.querySelector("#div-show-score");
 var showScore =  document.querySelector("#show-score");
+
+var spanSecondPenalty = document.querySelector("#seconds-penalty");
 
 var timeInterval;
 var secondsLeft = 60;   //TIMER FOR THE QUIZ
@@ -24,6 +25,10 @@ var highScores = [];    //ARRAY VARIBALE TO STORE HIGHSCORE VALUES
 var displayAlert="";    //VARIBLE TO STORE IF A OPTION SELECTED IS CORRECT OR WRONG AND WILL DISPLAY FOR FEW SECONDS BEFORE GOING AWAY.
 var correctAnswers=0;   //KEEP COUNT OF CORRECT ANSWERS
 var wrongAnswers=0;     //KEEP COUNT OF INCORRECT ANSWERS
+const secondsPenalty=5;   //TIME PENALTY IF A OPTION IS WRONG. SO IF YOU CHANGE HERE IT WILL BE CHANGED ON HTML AS WELL AS IN THE PENALTY CODE, SO ITS NOT HARD CODED.
+
+
+spanSecondPenalty.textContent = secondsPenalty; // DISPLAY THE SECONDPENALTY VALUE
 
 // QUESTION ARRAY
 var questions = [{
@@ -47,7 +52,7 @@ var questions = [{
     correctAnswer: "quotes"
 },
 {
-    question: "A very useful tool used during development and debugging for prng content to the debugger is:",
+    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
     options: ["JavaScript","terminal / bash","for loops","console.log"],
     correctAnswer: "console.log"
 }
@@ -146,6 +151,7 @@ function renderQuestion(){
             button.textContent = questions[questionNo].options[x];
             button.setAttribute("style","width: 200px; height: 50px; margin-bottom: 10px");
             button.setAttribute("id","button-option");
+            button.setAttribute("class","button-hover");
             li.setAttribute("data-index",x);
             
             li.appendChild(button);
@@ -173,7 +179,7 @@ quizOptions.addEventListener("click",function(event){
             correctAnswers++;   
         }
         else{
-            secondsLeft =secondsLeft - 5;
+            secondsLeft =secondsLeft - secondsPenalty;
             displayAlert="Wrong";
             score =score -6;
             wrongAnswers++;
